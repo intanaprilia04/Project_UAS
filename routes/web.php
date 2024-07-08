@@ -17,14 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('posts.index');
-});
+// Route::get('/', function () {
+    //return view('posts.index');
+//});
+Route::get('/', [PostController::class, 'index']);
 // Route untuk resource post
 Route::resource('/posts', PostController::class);
 
-Route::get('/view', [PostController::class, 'view'])->name('posts.view');
-Route::get('/edit', [PostController::class, 'view'])->name('posts.edit');
-Route::get('/view', [PostController::class, 'view'])->name('posts.login');
-
-
+Route::get('/view{code}', [PostController::class, 'view'])->name('posts.view');
+Route::get('/add', [PostController::class, 'add'])->name('posts.add');
+Route::get('/edit{code}', [PostController::class, 'edit'])->name('posts.edit');
+Route::get('/login', [PostController::class, 'login'])->name('posts.login');
+Route::get('/pdf', [PostController::class, 'generatePDF'])->name('posts.pdf');
